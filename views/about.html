@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="tailwind.css" />
+    <title>Document</title>
+    <style>
+      h1 {
+        font-size: 4em;
+      }
+      h2 {
+        font-size: 3em;
+      }
+      h3 {
+        font-size: 2em;
+      }
+      h4 {
+        font-size: 1em;
+      }
+    </style>
+  </head>
+  <body class="h-screen flex flex-col">
+    <nav
+      class="
+        bg-purple-900
+        text-gray-50
+        w-screen
+        flex
+        items-center
+        justify-between
+        p-2
+        px-5
+      "
+    >
+      <h1>NodeJS</h1>
+      <ul class="flex gap-2">
+        <li class="cursor-pointer">
+          <a href="/home">Home</a>
+        </li>
+        <li class="cursor-pointer underline">
+          <a href="/about">About</a>
+        </li>
+        <li class="cursor-pointer">
+          <a href="/contact">Contact</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="flex items-center justify-center flex-col flex-1 bg-red-200">
+      <h1>ABOUT</h1>
+      <h2>This website has been visited: <span></span></h2>
+    </div>
+
+    <script src="/index.js"></script>
+  </body>
+</html>
