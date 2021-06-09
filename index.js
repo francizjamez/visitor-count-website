@@ -1,43 +1,21 @@
 const http = require("http");
-const fs = require("fs");
-let count = 0;
+const deleteRequest = require("./requests/delete.js");
+const get = require("./requests/get.js");
+const post = require("./requests/post.js");
+const put = require("./requests/put.js");
 
-const server = http.createServer((req, res) => {
-  //   res.setHeader("Count", "0");
-  switch (req.url) {
-    case "/":
-      const data = fs.readFileSync("./views/home.html");
-      res.write(data);
-      break;
-    case "/home":
-      res.write(fs.readFileSync("./views/home.html"));
-      break;
-    case "/about":
-      res.write(fs.readFileSync("./views/about.html"));
-      break;
-    case "/contact":
-      res.write(fs.readFileSync("./views/contact.html"));
-      break;
-    case "/index.js":
-      res.setHeader("content-type", "text/javascript");
-      res.write(fs.readFileSync("./views/index.js"));
-      count++;
-      break;
-    case "/tailwind.css":
-      res.setHeader("content-type", "text/css");
-      res.write(fs.readFileSync("./views/tailwind.css"));
-      break;
-    case "/api/getCount":
-      res.setHeader("Access-Control-Allow-Origin", "*");
-      res.setHeader("content-type", "text/plain");
-      res.write(count.toString());
-      break;
-    default:
-      res.setHeader("content-type", "text/html");
-      res.write("<h1>Page not found<h1>");
-      break;
-  }
-  res.end();
+const server = http.createServer(async (req, res) => {
+  try {
+    if (req.method === "POST") {
+      post(res, req);
+    } else if (req.method === "GET") {
+      get(res, req);
+    } else if (req.method === "DELETE") {
+      deleteRequest(res, req);
+    } else if (req.method === "PUT") {
+      put(res, req);
+    }
+  } catch (err) {}
 });
 
 server.listen(3001, "localhost", () => {
